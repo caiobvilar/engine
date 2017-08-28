@@ -5,7 +5,7 @@ int main(int argc, char *argv[])
 {
 	SDL_Window *main_Win;
 	SDL_Renderer *main_Render;
-	if(SDL_Init(SDL_INIT_EVERYTHING) >= 0)
+	if(SDL_Init(SDL_INIT_VIDEO) >= 0)
 	{
 		std::cout << "[ENGINE]: SDL succesfully initialized." << std::endl;
 		main_Win = SDL_CreateWindow("HELLO xD",
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 		std::cout << "[ENGINE]: destroyed renderer..." << std::endl;
 		SDL_DestroyWindow(main_Win);
 		std::cout << "[ENGINE]: destroyed window..." << std::endl;
-		SDL_QuitSubSystem(SDL_INIT_EVERYTHING);
+		SDL_QuitSubSystem(SDL_INIT_VIDEO);
 		SDL_Quit();
 		std::cout << "[ENGINE]: quit SDL." << std::endl;
 	}
