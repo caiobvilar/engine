@@ -91,7 +91,7 @@ void Game::Render()
 void Game::HandleEvents()
 {
 	SDL_Event event;
-	while(SDL_WaitEvent(&event))
+	while(SDL_PollEvent(&event))
 	{
 		switch(event.type)
 		{

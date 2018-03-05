@@ -29,8 +29,7 @@ int WindowModule::init()
 
 void WindowModule::clean()
 {
-	std::cout << "[SYSTEM]: shuting down WindowModule in 5 seconds..." << std::endl;
-	SDL_Delay(5000);
+	std::cout << "[SYSTEM]: shuting down WindowModule..." << std::endl;
 	if(this->MainWindow)
 	{
 		SDL_DestroyWindow(this->MainWindow);
