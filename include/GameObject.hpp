@@ -10,5 +10,7 @@ class GameObject
 	protected:
 		GameObject();
 		virtual ~GameObject();
+		SDL_Rect domain;					// Reduces need for other objects and variable
+															// Single variable to hold the objects size and position
 };
 #endif //_GAMEOBJECT_HPP_
