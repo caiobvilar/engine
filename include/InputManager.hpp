@@ -5,7 +5,7 @@
 #include <map>
 #include <vector>
 #include <algorithm>
-
+#include "SDL2/SDL.h"
 class InputManager
 {
 	private:
@@ -13,7 +13,7 @@ class InputManager
 		//Map of lists for input event observers: text input, text edit, mousemotion,
 		//mousebutton, mousewheel, joystick_axis, etc. Comming from
 		//Keyboard, controller, joystick or mouse
-		std::map<std::queue,std::string> InputEventQueue;
+		std::map<std::queue<SDL_Event*>,std::string> InputEventQueue;
 	public:
 		InputManager();
 		~InputManager();
