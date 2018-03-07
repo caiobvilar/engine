@@ -14,27 +14,27 @@ void Game::Init()
 {
 	//calls configuration routine
 	//starts singletons
-		this->mainWindow = new WindowModule();
-		this->mainWindow->configure();
-		if(this->mainWindow->init() < 0)
-		{
-			//failed to start WindowModule
-		}
-		/*
-		this->inputManager = new InputManager();
-		//this->inputManager->configure();
-		if(this->inputManager->init() < 0)
-		{
-			//failed to start InputManager
-		}
-		
-		this->audioModule = new AudioModule();
-		if(this->audioModule == nullptr)
-		{
-			//failed to start AudioModule
-		}
-		*/
-		this->running=true;
+	this->mainWindow = new WindowModule();
+	this->mainWindow->configure();
+	if(this->mainWindow->init() < 0)
+	{
+		//failed to start WindowModule
+	}
+	/*
+		 this->inputManager = new InputManager();
+	//this->inputManager->configure();
+	if(this->inputManager->init() < 0)
+	{
+	//failed to start InputManager
+	}
+
+	this->audioModule = new AudioModule();
+	if(this->audioModule == nullptr)
+	{
+	//failed to start AudioModule
+	}
+	*/
+	this->running=true;
 	//
 }
 
@@ -45,7 +45,7 @@ void Game::Clean()
 
 	//delete this->inputManager;
 	//this->inputManager = nullptr;
-	
+
 	//Calling GameObject cleanup
 	if(!this->GameObjects.empty())
 	{
@@ -72,14 +72,14 @@ void Game::Clean()
 
 void Game::Update()
 {
-		std::vector<GameObject*>::iterator GObItr;
-		for(GObItr = this->GameObjects.begin();
-				GObItr != this->GameObjects.end();
-				GObItr++)
-		{
-			(*GObItr)->update();
-		}
-//	this->inputManager->dispatchEvents();	
+	std::vector<GameObject*>::iterator GObItr;
+	for(GObItr = this->GameObjects.begin();
+			GObItr != this->GameObjects.end();
+			GObItr++)
+	{
+		(*GObItr)->update();
+	}
+	//	this->inputManager->dispatchEvents();	
 }
 
 void Game::Render()
