@@ -20,14 +20,14 @@ void Game::Init()
 	{
 		//failed to start WindowModule
 	}
-	/*
-		 this->inputManager = new InputManager();
-	//this->inputManager->configure();
+	
+	this->inputManager = new InputManager();
+	this->inputManager->configure();
 	if(this->inputManager->init() < 0)
 	{
 	//failed to start InputManager
 	}
-
+	/*
 	this->audioModule = new AudioModule();
 	if(this->audioModule == nullptr)
 	{
@@ -43,8 +43,8 @@ void Game::Clean()
 	delete this->mainWindow;
 	this->mainWindow = nullptr;
 
-	//delete this->inputManager;
-	//this->inputManager = nullptr;
+	delete this->inputManager;
+	this->inputManager = nullptr;
 
 	//Calling GameObject cleanup
 	if(!this->GameObjects.empty())

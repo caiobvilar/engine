@@ -1,16 +1,26 @@
 #include "../include/InputManager.hpp"
+#include <iostream>
 
 InputManager::InputManager()
 {
-	//Start Keyboard Event Queue
-	this->registerNewQueue("Keyboard");
-	this->registerNewQueue("Mouse");
-
-	//Start Mouse Event Queue
-	
 }
 
 InputManager::~InputManager()
+{
+}
+
+int InputManager::init()
+{
+	//Start Keyboard Event Queue
+	this->registerNewQueue("Keyboard");
+	std::cout << "[SYSTEM]: started Keyboard event queue." << std::endl;
+	//Start Mouse Event Queue
+	this->registerNewQueue("Mouse");
+	std::cout << "[SYSTEM]: started Mouse event queue." << std::endl;
+	return 0;
+}
+
+void InputManager::configure()
 {
 }
 
@@ -25,8 +35,13 @@ void InputManager::registerNewQueue(std::string queue_id)
 			std::pair<std::queue<SDL_Event*>,std::string>());
 }
 
-void InputManager::attachObserver(GameObject*)
+void InputManager::addNewEvent(SDL_Event *event, std::string queue_id)
 {
+	this->
+}
+void InputManager::attachObserver(GameObject*,std::string id_queue)
+{
+	this->InputObservers.insert(std::pair<>())
 }
 
 void InputManager::dettachObserver(GameObject*)
