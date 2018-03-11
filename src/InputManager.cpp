@@ -39,15 +39,15 @@ void InputManager::addNewEvent(SDL_Event *event, std::string queue_id)
 {
 	this->
 }
-void InputManager::attachObserver(GameObject*,std::string id_queue)
+void InputManager::attach(GameObject*,std::string id_queue)
 {
 	this->InputObservers.insert(std::pair<>())
 }
 
-void InputManager::dettachObserver(GameObject*)
+void InputManager::dettach(GameObject*)
 {
 }
 
-void InputManager::dispatchEvents()
+void InputManager::notify(std::string)
 {
 }

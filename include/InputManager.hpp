@@ -34,10 +34,10 @@ class InputManager
 		//it out to create a new queue.If non-existant.
 		void registerNewQueue(SDL_Event*);	
 		void registerNewQueue(std::string);	 //Basic queue, like keyboard and mouse
-		void attachObserver(GameObject*);
-		void addNewEvent(SDL_Event *event, std::string queue_id);
-		void dettachObserver(GameObject*);
-		void dispatchEvents();
+		void attach(GameObject*);
+		void addEvent(SDL_Event *event, std::string queue_id);
+		void dettach(GameObject*);
+		void notify();
 };
 
 #endif //_INPUTMANAGER_HPP_
