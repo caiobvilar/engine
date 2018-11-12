@@ -41,6 +41,18 @@ void WindowModule::clean()
 	std::cout << "[SYSTEM]: Graphics finished." << std::endl;
 }
 
+void WindowModule::onNotify(SDL_Event event)
+{
+	switch(event.type)
+	{
+		case SDL_Quit:
+			this->clean();
+			break;
+		case SDL_WindowEvent:
+			this->
+	}
+}
+
 void WindowModule::configure()
 {
 }

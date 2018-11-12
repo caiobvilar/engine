@@ -1,17 +1,21 @@
+//////////////////////////////////////////////////////////////////////////////////////
+//	Author: Caio Jose Borba Vilar Guimaraes
+//	Description: main window class that handles all windows and window related events
+//	License: GLP 3.0
+//	Filename: WindowModule.hpp
+//////////////////////////////////////////////////////////////////////////////////////
 #ifndef _WINDOWMODULE_HPP
 #define _WINDOWMODULE_HPP
 
 #include <cstdint>	// Regarding uint32_t type
 #include <SDL2/SDL.h>
+#include "GameEntity.hpp"
 
-class WindowModule
+class WindowModule : public GameEntity
 {
 	private:
 
-		//TODO: fill all this data with
-		//the Configure() method, while reading
-		//from a config.json file.
-		const char *windowTitle = "SDL Testing";
+		const char *windowTitle = "Window Module";
 		const int SCREEN_WIDTH = 640;
 		const int SCREEN_HEIGHT = 480;
 		const int Xoffset = SDL_WINDOWPOS_CENTERED;
