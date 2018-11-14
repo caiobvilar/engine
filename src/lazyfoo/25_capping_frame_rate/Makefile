@@ -1,5 +1,5 @@
 #OBJ_NAME
-OBJ_NAME = 
+OBJ_NAME = 25_capping_frame_rate
 
 #OBJS
 OBJS = $(OBJ_NAME).cpp

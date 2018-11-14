@@ -1,5 +1,5 @@
 #OBJ_NAME
-OBJ_NAME = 
+OBJ_NAME = 26_motion
 
 #OBJS
 OBJS = $(OBJ_NAME).cpp

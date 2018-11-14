@@ -1,5 +1,5 @@
 #OBJ_NAME
-OBJ_NAME = 
+OBJ_NAME = 23_advanced_timers
 
 #OBJS
 OBJS = $(OBJ_NAME).cpp
