@@ -1,0 +1,18 @@
+#OBJS
+OBJS = 04_key_presses.cpp
+
+#CC
+CC = g++
+
+#COMPILER_FLAGS
+COMPILER_FLAGS = -w
+
+#LINKER_FLAGS
+LINKER_FLAGS = -lSDL2
+
+#OBJ_NAME
+OBJ_NAME = 04_key_presses
+
+#Target
+all	:	$(OBJS)
+			$(CC)	$(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
