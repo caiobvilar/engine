@@ -30,7 +30,7 @@ void InputHandler::handleInputs()
 				}
 				this->InputQueue.pop();
 				break;
-			case SDL_KeyboardEvent:
+			case SDL_KEYUP:
 				for(this->KeyboardObserversITR = this->KeyboardObservers.begin();
 						this->KeyboardObserversITR != this->KeyboardObservers.end();
 						this->KeyboardObserversITR++)
@@ -39,6 +39,16 @@ void InputHandler::handleInputs()
 				}
 				this->InputQueue.pop();
 				break;
+			case SDL_KEYDOWN:
+				for(this->KeyboardObserversITR = this->KeyboardObservers.begin();
+						this->KeyboardObserversITR != this->KeyboardObservers.end();
+						this->KeyboardObserversITR++)
+				{
+					(*this->KeyboardObserversITR)->onNotify(this->InputQueue.front());
+				}
+				this->InputQueue.pop();
+				break;
+			/*
 			case SDL_MouseMotionEvent:
 				//notify
 				this->InputQueue.pop();
@@ -51,7 +61,8 @@ void InputHandler::handleInputs()
 				//notify
 				this->InputQueue.pop();
 				break;
-			case SDL_QuitEvent:
+			*/
+			case SDL_QUIT:
 				//notify
 				for(this->WindowObserversITR = this->WindowObservers.begin();
 						this->WindowObserversITR != this->WindowObservers.end();
