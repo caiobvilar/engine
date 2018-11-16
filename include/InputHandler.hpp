@@ -3,7 +3,7 @@
 
 #include <pthread.h>
 #include <queue>
-#include <map>
+#include <list>
 #include <algorithm>
 #include <SDL2/SDL.h>
 #include <utility>

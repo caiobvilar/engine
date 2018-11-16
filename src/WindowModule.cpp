@@ -1,5 +1,7 @@
 #include "../include/WindowModule.hpp"
-#include <iostream> //TODO: remove and use the LogModule to handle logging stuff
+#include <iostream>
+
+//TODO: remove iostream and use the LogModule to handle logging stuff
 
 int WindowModule::init()
 {

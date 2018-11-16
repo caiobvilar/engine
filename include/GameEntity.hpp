@@ -24,17 +24,17 @@ class GameEntity
 
 		virtual void update() = 0;
 
-		double getX(){return this->pos_x;};
+		double getX(){return this->pos_x;}
 
-		double getY(){return this->pos_y;};
+		double getY(){return this->pos_y;}
 
-		void setY(double new_y){this->pos_y = new_y;};
+		void setY(double new_y){this->pos_y = new_y;}
 
-		void setX(double new_x){this->pos_x = new_x;};
+		void setX(double new_x){this->pos_x = new_x;}
 
-		bool getIsAlive(){return this->alive};
+		bool getIsAlive(){return this->alive;}
 
-		void setIsAlive(bool status){this->alive = status;};
+		void setIsAlive(bool status){this->alive = status;}
 
 		virtual void onNotify(SDL_Event event);
 };

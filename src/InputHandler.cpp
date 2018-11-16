@@ -1,4 +1,4 @@
-#include "InputHandler.hpp"
+#include "../include/InputHandler.hpp"
 
 void InputHandler::pollInputEvents()
 {
