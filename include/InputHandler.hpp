@@ -11,22 +11,22 @@
 
 enum InputType {Window, Keyboard, MouseMotion, MouseButton, MouseWheel,Quit};
 
-class InputManager
+class InputHandler
 {
 	private:
 		//There's no explicit Quit Queue, but everyone will be notified of quit event.
 		std::queue<SDL_Event> InputQueue;
-		std::list<GameEntity*> WindowGameEntitys;
-		std::list<GameEntity*> KeyboardGameEntitys;
-		std::list<GameEntity*> MouseMotionGameEntitys;
-		std::list<GameEntity*> MouseButtonGameEntitys;
-		std::list<GameEntity*> MouseWheelGameEntitys;
+		std::list<GameEntity*> WindowObservers;
+		std::list<GameEntity*> KeyboardObservers;
+		std::list<GameEntity*> MouseMotionObservers;
+		std::list<GameEntity*> MouseButtonObservers;
+		std::list<GameEntity*> MouseWheelObservers;
 		//////////////Lists Respective Iterators////////////////////////////////////////
-		std::list<GameEntity*>::iterator WindowGameEntitysITR;
-		std::list<GameEntity*>::iterator KeyboardGameEntitysITR;
-		std::list<GameEntity*>::iterator MouseMotionGameEntitysITR;
-		std::list<GameEntity*>::iterator MouseButtonGameEntitysITR;
-		std::list<GameEntity*>::iterator MouseWheelGameEntitysITR;
+		std::list<GameEntity*>::iterator WindowObserversITR;
+		std::list<GameEntity*>::iterator KeyboardObserversITR;
+		std::list<GameEntity*>::iterator MouseMotionObserversITR;
+		std::list<GameEntity*>::iterator MouseButtonObserversITR;
+		std::list<GameEntity*>::iterator MouseWheelObserversITR;
 
 	public:
 
@@ -35,8 +35,8 @@ class InputManager
 		void pollInputEvents(); //Polls Event Queue for events to handle.
 		void handleInputs();  	//Notifies whoever is interested about the events.
 		void configure(); 			//Configures Input definitions etc.
-		void attachGameEntity(enum InputType, GameEntity* observer);	//Attach GameEntity to some kind of event
-		void detachGameEntity(enum InputType, GameEntity* observer); //Dettach GameEntity to event notifying list.
+		void attachObserver(enum InputType, GameEntity* observer);	//Attach GameEntity to some kind of event
+		void detachObserver(enum InputType, GameEntity* observer); //Dettach GameEntity to event notifying list.
 		void Init();       			//Start the module.
 };
 

@@ -5,9 +5,6 @@
 #include <pthread.h>
 #include <vector>
 //SDL Libs//////////////////
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_mixer.h>
 ///////CORE LIBS////////////
 #include "InputHandler.hpp"
 #include "WindowModule.hpp"

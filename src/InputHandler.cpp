@@ -19,14 +19,14 @@ void InputHandler::handleInputs()
 	//notifies observers of the respective subjected events;
 	while(!this->InputQueue.empty())
 	{
-		switch(this->InputQueue::front.type)
+		switch(this->InputQueue.front().type)
 		{
-			case SDL_WindowEvent:
+			case SDL_WINDOWEVENT:
 				for(this->WindowObserversITR = this->WindowObservers.begin();
 						this->WindowObserversITR != this->WindowObservers.end();
 						this->WindowObserversITR++)
 				{
-					(*this->WindowObserversITR).onNotify(this->InputQueue::front);
+					(*this->WindowObserversITR)->onNotify(this->InputQueue.front());
 				}
 				this->InputQueue.pop();
 				break;
@@ -35,7 +35,7 @@ void InputHandler::handleInputs()
 						this->KeyboardObserversITR != this->KeyboardObservers.end();
 						this->KeyboardObserversITR++)
 				{
-					(*this->KeyboardObserversITR).onNotify(this->InputQueue::front);
+					(*this->KeyboardObserversITR)->onNotify(this->InputQueue.front());
 				}
 				this->InputQueue.pop();
 				break;
@@ -57,13 +57,13 @@ void InputHandler::handleInputs()
 						this->WindowObserversITR != this->WindowObservers.end();
 						this->WindowObserversITR++)
 				{
-					(*this->WindowObserversITR).onNotify(this->InputQueue::front);
+					(*this->WindowObserversITR)->onNotify(this->InputQueue.front());
 				}
 				for(this->KeyboardObserversITR = this->KeyboardObservers.begin();
 						this->KeyboardObserversITR != this->KeyboardObservers.end();
 						this->KeyboardObserversITR++)
 				{
-					(*this->KeyboardObserversITR).onNotify(this->InputQueue::front);
+					(*this->KeyboardObserversITR)->onNotify(this->InputQueue.front());
 				}
 				this->InputQueue.pop();
 				break;
@@ -71,9 +71,9 @@ void InputHandler::handleInputs()
 	}
 }
 
-void InputHandler::attachObserver(enum InputType, GameEntity* observer)
+void InputHandler::attachObserver(InputType ObsType, GameEntity* observer)
 {
-	switch(InputType)
+	switch(ObsType)
 	{
 		case Window:
 			this->WindowObservers.push_front(observer);
@@ -82,22 +82,23 @@ void InputHandler::attachObserver(enum InputType, GameEntity* observer)
 			this->KeyboardObservers.push_front(observer);
 			break;
 		case MouseMotion:
-			this->MouseMotionObserver.push_front(observer);
+			this->MouseMotionObservers.push_front(observer);
 			break;
 		case MouseButton:
-			this->MouseButtonObserver.push_front(observer);
+			this->MouseButtonObservers.push_front(observer);
 			break;
 		case MouseWheel:
-			this->MouseWheelObservers.push_front(observers);
-			break
+			this->MouseWheelObservers.push_front(observer);
+			break;
 	}
 }
 
 
-void InputHandler::detachObserver(enum InputType, GameEntity* observer)
+void InputHandler::detachObserver(InputType ObsType, GameEntity* observer)
 {
-	static std::list<Observer*>::iterator detachITR;
-	switch(InputType)
+	static std::list<GameEntity*>::iterator detachITR;
+
+	switch(ObsType)
 	{
 		case Window:
 			detachITR = std::find(this->WindowObservers.begin(),this->WindowObservers.end(),observer);
@@ -118,7 +119,7 @@ void InputHandler::detachObserver(enum InputType, GameEntity* observer)
 		case MouseWheel:
 			detachITR = std::find(this->MouseWheelObservers.begin(),this->MouseWheelObservers.end(),observer);
 			this->MouseWheelObservers.erase(detachITR);
-			break
+			break;
 	}
 
 }
