@@ -1,9 +1,9 @@
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- *	Author: Caio Jose Borba Vilar Guimaraes
- *	Description: main class to all entities describing basic attributes, methods and basic design patterns as Update and Observer/Subject
- *	License: GLP 3.0
- *	Filename: GameEntity.hpp
-*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// *	Author: Caio Jose Borba Vilar Guimaraes
+// *	Description: main class to all entities describing basic attributes, methods and basic design patterns as Update and Observer/Subject
+// *	License: GLP 3.0
+// *	Filename: GameEntity.hpp
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #ifndef _GAMEENTITY_HPP_
 #define _GAMEENTITY_HPP_
@@ -12,6 +12,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
+
 class GameEntity
 {
 	private:
@@ -21,12 +22,15 @@ class GameEntity
 		double pos_y;
 
 	public:
+		
+		GameEntity()
+		{
+			this->pos_x = 0;
+			this->pos_y = 0;
+		}
+		virtual ~GameEntity(){}
 
-		GameEntity();
-
-		virtual ~GameEntity();
-
-		virtual void update() = 0;
+		virtual void update();
 
 		double getX(){return this->pos_x;}
 

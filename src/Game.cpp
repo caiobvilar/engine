@@ -14,14 +14,10 @@ void Game::Shutdown()
 {
 	delete this->Inputmanager;
 	delete this->WindowManager;
-	this->Inputmanager->attachObserver(Window, this->WindowManager);
 	this->running = false;
 }
 
-Game::Game() //Handles Configurations
+bool Game::isRunning()
 {
-}
-Game::~Game() //No idea..calls shutdown
-{
-	this->Shutdown();
+	return this->running;
 }

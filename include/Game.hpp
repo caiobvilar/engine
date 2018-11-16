@@ -16,13 +16,13 @@ class Game
 
 		Game();
 		~Game();
-
+		void Init();
+		void Shutdown();
+		bool isRunning();
 	private:
 
 		bool running;																//Holds game running state
 		InputHandler* Inputmanager;
 		WindowModule* WindowManager;
-		void Init();
-		void Shutdown();
 };
 #endif //_GAME_HPP_
