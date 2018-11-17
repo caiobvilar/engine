@@ -3,11 +3,13 @@
 
 //C++ Basics
 #include <pthread.h>
-#include <vector>
-//SDL Libs//////////////////
+#include <string>
+#include <iostream>
+///////SDL2 Libs//////////////////
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 ///////CORE LIBS////////////
-#include "InputHandler.hpp"
-#include "WindowModule.hpp"
 ///////////////////////////
 
 class Game
@@ -16,13 +18,19 @@ class Game
 
 		Game();
 		~Game();
-		void Init();
-		void Shutdown();
+		void Init(std::string winName,int win_x,int win_y,int win_width,int win_height);
+		void HandleEvents();
+		void Update();
+		void Render();
+		void Cleanup();
 		bool isRunning();
+
 	private:
 
+		std::string windowName;
 		bool running;																//Holds game running state
-		InputHandler* Inputmanager;
-		WindowModule* WindowManager;
+		SDL_Window* mainWindow = NULL;
+		SDL_Renderer* mainRenderer = NULL;
+
 };
 #endif //_GAME_HPP_

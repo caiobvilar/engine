@@ -4,30 +4,30 @@
 //	License: GLP 3.0
 //	Filename: main.cpp
 /////////////////////////////////////////////////////////////////
-#include "../include/WindowModule.hpp"
-#include "../include/InputHandler.hpp"
-
+#include "../include/Game.hpp"
 #define	FPS	60
 #define	DELAY_TIME	1000.0f/FPS
 
 
 int main(int argc, char *argv[])
 {
-	InputHandler* Input = new InputHandler();
-	WindowModule* Window = new WindowModule(800,600);
-	Input->attachObserver(Window,Window);
-	bool running = true;
+	Game* GameInstance = new Game();
 	uint32_t frameStart,frameTime;
-	while(running) // Main Loop
+	GameInstance->Init("Main Window",0,0,800,600);
+
+	while(GameInstance->isRunning()) // Main Loop
 	{
 		frameStart = SDL_GetTicks();
-		Input->handleInputs();
-		Window->update();
 		frameTime = SDL_GetTicks() - frameStart;
+		GameInstance->HandleEvents();
+		GameInstance->Update();
+		GameInstance->Render();
 		if(frameTime < DELAY_TIME)
 		{
 			SDL_Delay((int) (DELAY_TIME - frameTime));
 		}
 	}
+	GameInstance->Cleanup();
+	delete GameInstance;
 	return 0;
 }
