@@ -25,8 +25,8 @@ class Game
 		void Cleanup();
 		bool isRunning();
 
-	private:
 
+	private:
 		std::string windowName;
 		bool running;																//Holds game running state
 		SDL_Window* mainWindow = NULL;
