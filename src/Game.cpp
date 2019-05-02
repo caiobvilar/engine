@@ -73,3 +73,7 @@ bool Game::isRunning()
 {
 	return this->running;
 }
+void Game::setRunning(bool state)
+{
+	this->running = state;
+}

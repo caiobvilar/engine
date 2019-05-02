@@ -24,7 +24,7 @@ class Game
 		void Render();
 		void Cleanup();
 		bool isRunning();
-
+		void setRunning(bool);
 
 	private:
 		std::string windowName;

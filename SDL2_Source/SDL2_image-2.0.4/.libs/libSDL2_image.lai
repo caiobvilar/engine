@@ -14,10 +14,10 @@ library_names='libSDL2_image-2.0.so.0.2.2 libSDL2_image-2.0.so.0 libSDL2_image.s
 old_library='libSDL2_image.a'
 
 # Linker flags that can not go in dependency_libs.
-inherited_linker_flags=''
+inherited_linker_flags=' -pthread'
 
 # Libraries that this one depends upon.
-dependency_libs=' -L/usr/local/lib /usr/local/lib/libSDL2.la -lm -ldl -lsndio -lpthread -lrt'
+dependency_libs=' -lSDL2'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''

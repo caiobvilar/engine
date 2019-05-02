@@ -17,13 +17,17 @@ build/SDL_x11modes.lo: \
  include/SDL_mutex.h \
  /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/x11/../SDL_vulkan_internal.h \
  include/SDL_stdinc.h \
+ /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/x11/../wayland/SDL_waylanddyn.h \
+ /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/x11/../wayland/../../SDL_internal.h \
+ /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/x11/../wayland/SDL_waylandsym.h \
+ gen/wayland-client-protocol.h \
  /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/x11/.././khronos/vulkan/vulkan.h \
  /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/x11/.././khronos/vulkan/./vk_platform.h \
  include/SDL_vulkan.h \
  /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/x11/../../core/linux/SDL_dbus.h \
  /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/x11/../../core/linux/../../SDL_internal.h \
  /usr/include/dbus-1.0/dbus/dbus.h \
- /usr/lib/x86_64-linux-gnu/dbus-1.0/include/dbus/dbus-arch-deps.h \
+ /usr/lib/dbus-1.0/include/dbus/dbus-arch-deps.h \
  /usr/include/dbus-1.0/dbus/dbus-macros.h \
  /usr/include/dbus-1.0/dbus/dbus-address.h \
  /usr/include/dbus-1.0/dbus/dbus-types.h \

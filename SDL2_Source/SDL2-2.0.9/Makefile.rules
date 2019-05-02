@@ -338,13 +338,7 @@ $(objects)/SDL_alsa_audio.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2
 $(objects)/SDL_pulseaudio.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/audio/pulseaudio/SDL_pulseaudio.c
 	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
 
-$(objects)/SDL_esdaudio.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/audio/esd/SDL_esdaudio.c
-	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
-
-$(objects)/SDL_nasaudio.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/audio/nas/SDL_nasaudio.c
-	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
-
-$(objects)/SDL_sndioaudio.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/audio/sndio/SDL_sndioaudio.c
+$(objects)/SDL_jackaudio.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/audio/jack/SDL_jackaudio.c
 	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
 
 $(objects)/SDL_x11clipboard.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/x11/SDL_x11clipboard.c
@@ -399,6 +393,36 @@ $(objects)/edid-parse.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9
 	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
 
 $(objects)/imKStoUCS.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/x11/imKStoUCS.c
+	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
+
+$(objects)/SDL_waylandclipboard.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandclipboard.c
+	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
+
+$(objects)/SDL_waylanddatamanager.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylanddatamanager.c
+	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
+
+$(objects)/SDL_waylanddyn.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylanddyn.c
+	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
+
+$(objects)/SDL_waylandevents.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandevents.c
+	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
+
+$(objects)/SDL_waylandmouse.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandmouse.c
+	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
+
+$(objects)/SDL_waylandopengles.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandopengles.c
+	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
+
+$(objects)/SDL_waylandtouch.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandtouch.c
+	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
+
+$(objects)/SDL_waylandvideo.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandvideo.c
+	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
+
+$(objects)/SDL_waylandvulkan.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandvulkan.c
+	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
+
+$(objects)/SDL_waylandwindow.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandwindow.c
 	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
 
 $(objects)/SDL_dbus.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/core/linux/SDL_dbus.c
@@ -498,3 +522,68 @@ $(objects)/SDL_test_memory.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-
 $(objects)/SDL_test_random.lo: /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/test/SDL_test_random.c
 	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
 
+$(gen)/pointer-constraints-unstable-v1-client-protocol.h: $(srcdir)/wayland-protocols/pointer-constraints-unstable-v1.xml
+	@$(SHELL) $(auxdir)/mkinstalldirs $(gen)
+	$(RUN_CMD_GEN)$(WAYLAND_SCANNER) client-header $< $@
+
+$(gen)/pointer-constraints-unstable-v1-protocol.c: $(srcdir)/wayland-protocols/pointer-constraints-unstable-v1.xml
+	@$(SHELL) $(auxdir)/mkinstalldirs $(gen)
+	$(RUN_CMD_GEN)$(WAYLAND_SCANNER) code $< $@
+
+$(objects)/pointer-constraints-unstable-v1-protocol.lo: $(gen)/pointer-constraints-unstable-v1-protocol.c $(gen)/pointer-constraints-unstable-v1-client-protocol.h
+	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
+
+$(gen)/relative-pointer-unstable-v1-client-protocol.h: $(srcdir)/wayland-protocols/relative-pointer-unstable-v1.xml
+	@$(SHELL) $(auxdir)/mkinstalldirs $(gen)
+	$(RUN_CMD_GEN)$(WAYLAND_SCANNER) client-header $< $@
+
+$(gen)/relative-pointer-unstable-v1-protocol.c: $(srcdir)/wayland-protocols/relative-pointer-unstable-v1.xml
+	@$(SHELL) $(auxdir)/mkinstalldirs $(gen)
+	$(RUN_CMD_GEN)$(WAYLAND_SCANNER) code $< $@
+
+$(objects)/relative-pointer-unstable-v1-protocol.lo: $(gen)/relative-pointer-unstable-v1-protocol.c $(gen)/relative-pointer-unstable-v1-client-protocol.h
+	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
+
+$(gen)/wayland-client-protocol.h: $(srcdir)/wayland-protocols/wayland.xml
+	@$(SHELL) $(auxdir)/mkinstalldirs $(gen)
+	$(RUN_CMD_GEN)$(WAYLAND_SCANNER) client-header $< $@
+
+$(gen)/wayland-protocol.c: $(srcdir)/wayland-protocols/wayland.xml
+	@$(SHELL) $(auxdir)/mkinstalldirs $(gen)
+	$(RUN_CMD_GEN)$(WAYLAND_SCANNER) code $< $@
+
+$(objects)/wayland-protocol.lo: $(gen)/wayland-protocol.c $(gen)/wayland-client-protocol.h
+	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
+
+$(gen)/xdg-shell-unstable-v6-client-protocol.h: $(srcdir)/wayland-protocols/xdg-shell-unstable-v6.xml
+	@$(SHELL) $(auxdir)/mkinstalldirs $(gen)
+	$(RUN_CMD_GEN)$(WAYLAND_SCANNER) client-header $< $@
+
+$(gen)/xdg-shell-unstable-v6-protocol.c: $(srcdir)/wayland-protocols/xdg-shell-unstable-v6.xml
+	@$(SHELL) $(auxdir)/mkinstalldirs $(gen)
+	$(RUN_CMD_GEN)$(WAYLAND_SCANNER) code $< $@
+
+$(objects)/xdg-shell-unstable-v6-protocol.lo: $(gen)/xdg-shell-unstable-v6-protocol.c $(gen)/xdg-shell-unstable-v6-client-protocol.h
+	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
+
+$(gen)/xdg-shell-client-protocol.h: $(srcdir)/wayland-protocols/xdg-shell.xml
+	@$(SHELL) $(auxdir)/mkinstalldirs $(gen)
+	$(RUN_CMD_GEN)$(WAYLAND_SCANNER) client-header $< $@
+
+$(gen)/xdg-shell-protocol.c: $(srcdir)/wayland-protocols/xdg-shell.xml
+	@$(SHELL) $(auxdir)/mkinstalldirs $(gen)
+	$(RUN_CMD_GEN)$(WAYLAND_SCANNER) code $< $@
+
+$(objects)/xdg-shell-protocol.lo: $(gen)/xdg-shell-protocol.c $(gen)/xdg-shell-client-protocol.h
+	$(RUN_CMD_CC)$(LIBTOOL) --tag=CC --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -MMD -MT $@ -c $< -o $@
+
+/home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandclipboard.c: $(gen)/pointer-constraints-unstable-v1-client-protocol.h $(gen)/relative-pointer-unstable-v1-client-protocol.h $(gen)/wayland-client-protocol.h $(gen)/xdg-shell-unstable-v6-client-protocol.h $(gen)/xdg-shell-client-protocol.h
+/home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylanddatamanager.c: $(gen)/pointer-constraints-unstable-v1-client-protocol.h $(gen)/relative-pointer-unstable-v1-client-protocol.h $(gen)/wayland-client-protocol.h $(gen)/xdg-shell-unstable-v6-client-protocol.h $(gen)/xdg-shell-client-protocol.h
+/home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylanddyn.c: $(gen)/pointer-constraints-unstable-v1-client-protocol.h $(gen)/relative-pointer-unstable-v1-client-protocol.h $(gen)/wayland-client-protocol.h $(gen)/xdg-shell-unstable-v6-client-protocol.h $(gen)/xdg-shell-client-protocol.h
+/home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandevents.c: $(gen)/pointer-constraints-unstable-v1-client-protocol.h $(gen)/relative-pointer-unstable-v1-client-protocol.h $(gen)/wayland-client-protocol.h $(gen)/xdg-shell-unstable-v6-client-protocol.h $(gen)/xdg-shell-client-protocol.h
+/home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandmouse.c: $(gen)/pointer-constraints-unstable-v1-client-protocol.h $(gen)/relative-pointer-unstable-v1-client-protocol.h $(gen)/wayland-client-protocol.h $(gen)/xdg-shell-unstable-v6-client-protocol.h $(gen)/xdg-shell-client-protocol.h
+/home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandopengles.c: $(gen)/pointer-constraints-unstable-v1-client-protocol.h $(gen)/relative-pointer-unstable-v1-client-protocol.h $(gen)/wayland-client-protocol.h $(gen)/xdg-shell-unstable-v6-client-protocol.h $(gen)/xdg-shell-client-protocol.h
+/home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandtouch.c: $(gen)/pointer-constraints-unstable-v1-client-protocol.h $(gen)/relative-pointer-unstable-v1-client-protocol.h $(gen)/wayland-client-protocol.h $(gen)/xdg-shell-unstable-v6-client-protocol.h $(gen)/xdg-shell-client-protocol.h
+/home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandvideo.c: $(gen)/pointer-constraints-unstable-v1-client-protocol.h $(gen)/relative-pointer-unstable-v1-client-protocol.h $(gen)/wayland-client-protocol.h $(gen)/xdg-shell-unstable-v6-client-protocol.h $(gen)/xdg-shell-client-protocol.h
+/home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandvulkan.c: $(gen)/pointer-constraints-unstable-v1-client-protocol.h $(gen)/relative-pointer-unstable-v1-client-protocol.h $(gen)/wayland-client-protocol.h $(gen)/xdg-shell-unstable-v6-client-protocol.h $(gen)/xdg-shell-client-protocol.h
+/home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandwindow.c: $(gen)/pointer-constraints-unstable-v1-client-protocol.h $(gen)/relative-pointer-unstable-v1-client-protocol.h $(gen)/wayland-client-protocol.h $(gen)/xdg-shell-unstable-v6-client-protocol.h $(gen)/xdg-shell-client-protocol.h

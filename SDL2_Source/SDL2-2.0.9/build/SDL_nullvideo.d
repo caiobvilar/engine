@@ -15,6 +15,10 @@ build/SDL_nullvideo.lo: \
  include/SDL_atomic.h include/SDL_mutex.h \
  /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/dummy/../SDL_vulkan_internal.h \
  include/SDL_stdinc.h \
+ /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/dummy/../wayland/SDL_waylanddyn.h \
+ /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/dummy/../wayland/../../SDL_internal.h \
+ /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/dummy/../wayland/SDL_waylandsym.h \
+ gen/wayland-client-protocol.h \
  /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/dummy/.././khronos/vulkan/vulkan.h \
  /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/dummy/.././khronos/vulkan/./vk_platform.h \
  include/SDL_vulkan.h \

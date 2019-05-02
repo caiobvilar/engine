@@ -13,6 +13,10 @@ build/SDL_blit.lo: \
  include/SDL_thread.h include/SDL_atomic.h include/SDL_mutex.h \
  /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/SDL_vulkan_internal.h \
  include/SDL_stdinc.h \
+ /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylanddyn.h \
+ /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/../../SDL_internal.h \
+ /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/wayland/SDL_waylandsym.h \
+ gen/wayland-client-protocol.h \
  /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/./khronos/vulkan/vulkan.h \
  /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/video/./khronos/vulkan/./vk_platform.h \
  include/SDL_vulkan.h \

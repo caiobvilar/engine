@@ -11,7 +11,7 @@ build/SDL_syspower.lo: \
  /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/power/linux/../../core/linux/SDL_dbus.h \
  /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/power/linux/../../core/linux/../../SDL_internal.h \
  include/SDL_stdinc.h /usr/include/dbus-1.0/dbus/dbus.h \
- /usr/lib/x86_64-linux-gnu/dbus-1.0/include/dbus/dbus-arch-deps.h \
+ /usr/lib/dbus-1.0/include/dbus/dbus-arch-deps.h \
  /usr/include/dbus-1.0/dbus/dbus-macros.h \
  /usr/include/dbus-1.0/dbus/dbus-address.h \
  /usr/include/dbus-1.0/dbus/dbus-types.h \

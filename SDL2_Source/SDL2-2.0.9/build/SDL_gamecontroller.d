@@ -24,6 +24,10 @@ build/SDL_gamecontroller.lo: \
  include/SDL_messagebox.h include/SDL_shape.h \
  /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/joystick/../events/../video/SDL_vulkan_internal.h \
  include/SDL_stdinc.h \
+ /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/joystick/../events/../video/wayland/SDL_waylanddyn.h \
+ /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/joystick/../events/../video/wayland/../../SDL_internal.h \
+ /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/joystick/../events/../video/wayland/SDL_waylandsym.h \
+ gen/wayland-client-protocol.h \
  /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/joystick/../events/../video/./khronos/vulkan/vulkan.h \
  /home/hellscoffe/Develop/engine/SDL2_Source/SDL2-2.0.9/src/joystick/../events/../video/./khronos/vulkan/./vk_platform.h \
  include/SDL_vulkan.h \
