@@ -21,11 +21,11 @@ int main(int argc, char *argv[])
 		GameInstance->HandleEvents();
 		GameInstance->Update();
 		GameInstance->Render();
+		frameTime = SDL_GetTicks() - frameStart;
 		if(frameTime < DELAY_TIME)
 		{
 			SDL_Delay((int) (DELAY_TIME - frameTime));
 		}
-		frameTime = SDL_GetTicks() - frameStart;
 		std::cout << "FPS: " << frameTime << std::endl;
 		kbdkeystates = SDL_GetKeyboardState(NULL);
 		if(kbdkeystates[SDL_SCANCODE_Q])

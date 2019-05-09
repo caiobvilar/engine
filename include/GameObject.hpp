@@ -1,11 +1,17 @@
 #ifndef _GAMEOBJECT_HPP_
 #define _GAMEOBJECT_HPP_
 
+//Classes that derive from GameObject:
+//
+//Player
+//Mob
+//Prop
+//
+
 class GameObject
 {
 	private:
-		int speed;
-		int x_pos,y_pos;
+		SDL_Rect Obj_Rect;
 		bool alive;
 		bool renderable;
 
@@ -19,8 +25,6 @@ class GameObject
 		void setY(int y) {this->y_pos = y;}
 		int getX() {return this->x_pos;}
 		int getY() {return this->y_pos;}
-		void setSpeed(int spd) {this->speed = spd;}
-		int getSpeed() {return this->speed;}
 }
 
 #endif
