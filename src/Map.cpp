@@ -12,7 +12,18 @@ Map::~Map()
 	delete this->array;
 	this->array = nullptr;
 }
+
 size_t Map::index(int row,int column)
 {
 	return (row+this->map_rows)*column;
+}
+
+void Map::Map(int rows,int columns,std::string map_path,std::string texture_path);
+{
+
+}
+
+void Map::update()
+{
+
 }
