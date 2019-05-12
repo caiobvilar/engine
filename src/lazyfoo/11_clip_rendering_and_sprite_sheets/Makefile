@@ -10,7 +10,7 @@ COMPILER_FLAGS = -w
 LINKER_FLAGS = -lSDL2 -lSDL2_image
 
 #OBJ_NAME
-OBJ_NAME = 11_clip_rendering_and_sprite_sheets
+OBJ_NAME = 11_clip_rendering_and_sprite_sheets -Wl,-rpath=/usr/local/lib
 
 #Target
 all	:	$(OBJS)

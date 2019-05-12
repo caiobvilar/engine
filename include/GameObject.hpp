@@ -20,11 +20,10 @@ class GameObject
 		virtual ~GameObject() {}
 		virtual void update();
 		bool isRenderable() {return this->renderable;}
-		bool isAlive() {return this->isAlive;}
-		void setX(int x) {this->x_pos = x;}
-		void setY(int y) {this->y_pos = y;}
-		int getX() {return this->x_pos;}
-		int getY() {return this->y_pos;}
-}
-
+		bool isAlive() {return this->alive;}
+		void setX(int x) {this->Obj_Rect.x = x;}
+		void setY(int y) {this->Obj_Rect.y = y;}
+		int getX() {return this->Obj_Rect.x;}
+		int getY() {return this->Obj_Rect.y;}
+};
 #endif

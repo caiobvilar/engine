@@ -1,6 +1,5 @@
 #include "../include/Game.hpp"
 
-
 Game::Game()
 {}
 Game::~Game()
@@ -16,7 +15,7 @@ void Game::Init(std::string winName,int win_x,int win_y,int win_width,int win_he
 	else
 	{
 		std::cout << "[GAME]: SDL video succesfuly initialized." << std::endl;
-		this->mainWindow = SDL_CreateWindow(this->windowName.c_str(),win_x,win_y,win_width,win_height,NULL);
+		this->mainWindow = SDL_CreateWindow(this->windowName.c_str(),win_x,win_y,win_width,win_height,0);
 		if(!this->mainWindow)
 		{
 			std::cout << "[ERROR]: Window could not be created! SDL_Error: " << SDL_GetError()<< std::endl;
@@ -64,6 +63,14 @@ void Game::Update()
 }
 void Game::Cleanup()
 {
+	std::vector<GameObject*>::iterator Objects_itr;
+	for(Objects_itr = this->Objects.begin();
+			Objects_itr != this->Objects.end();
+			Objects_itr++)
+	{
+		delete (*Objects_itr);
+		(*Objects_itr) = nullptr;
+	}
 	SDL_DestroyWindow(this->mainWindow);
 	SDL_DestroyRenderer(this->mainRenderer);
 	SDL_Quit();

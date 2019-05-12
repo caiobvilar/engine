@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////////
 //	Author: Caio Jose Borba Vilar Guimaraes
 //	Description: main executable that runs all modules and game
-//	License: GLP 3.0
+//	License: GPL 3.0
 //	Filename: main.cpp
 /////////////////////////////////////////////////////////////////
 #include "../include/Game.hpp"
