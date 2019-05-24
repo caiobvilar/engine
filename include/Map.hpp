@@ -8,10 +8,9 @@ class Map
 	private:
 		
 		void LoadMap(std::string map_path, std::string texture_path);
-		Map(int rows,int columns,std::string map_path);
-
 	public:
 		
+		Map();
 		~Map();
 		void update();
 

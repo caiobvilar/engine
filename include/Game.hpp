@@ -12,6 +12,7 @@
 #include <SDL2/SDL_ttf.h>
 ///////CORE LIBS////////////
 #include "GameObject.hpp"
+#include "Map.hpp"
 ///////////////////////////
 
 class Game
@@ -31,8 +32,9 @@ class Game
 	private:
 		std::string windowName;
 		bool running;																//Holds game running state
-		SDL_Window* mainWindow = NULL;
-		SDL_Renderer* mainRenderer = NULL;
+		SDL_Window* mainWindow = nullptr;
+		SDL_Renderer* mainRenderer = nullptr;
+		Map *currentMap = nullptr;
 		std::vector<GameObject*> Objects;
 
 };

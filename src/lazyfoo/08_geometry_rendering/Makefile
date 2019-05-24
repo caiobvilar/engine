@@ -11,7 +11,7 @@ COMPILER_FLAGS = -w
 LINKER_FLAGS = -lSDL2 -lSDL2_image
 
 #OBJ_NAME
-OBJ_NAME = 08_geometry_rendering
+OBJ_NAME = 08_geometry_rendering -Wl,-rpath=/usr/local/lib
 
 #Target
 all	:	$(OBJS)

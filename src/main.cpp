@@ -14,7 +14,6 @@ int main(int argc, char *argv[])
 	Game* GameInstance = new Game();
 	uint32_t frameStart,frameTime;
 	GameInstance->Init("Main Window",0,0,800,600);
-	const uint8_t *kbdkeystates= nullptr;
 	while(GameInstance->isRunning()) // Main Loop
 	{
 		frameStart = SDL_GetTicks();
@@ -27,11 +26,6 @@ int main(int argc, char *argv[])
 			SDL_Delay((int) (DELAY_TIME - frameTime));
 		}
 		std::cout << "FPS: " << frameTime << std::endl;
-		kbdkeystates = SDL_GetKeyboardState(NULL);
-		if(kbdkeystates[SDL_SCANCODE_Q])
-		{
-			GameInstance->setRunning(false);
-		}
 	}
 	GameInstance->Cleanup();
 	delete GameInstance;

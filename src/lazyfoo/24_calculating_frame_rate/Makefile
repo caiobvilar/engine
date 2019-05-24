@@ -11,7 +11,7 @@ CC = g++
 COMPILER_FLAGS = -w
 
 #LINKER_FLAGS
-LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
+LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -Wl,-rpath=/usr/local/lib
 
 
 #Target

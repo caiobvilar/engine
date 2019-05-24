@@ -36,6 +36,7 @@ void Game::Init(std::string winName,int win_x,int win_y,int win_width,int win_he
 			}
 		}
 	}
+	this->currentMap = new Map();
 	this->running = true;
 	std::cout << "[GAME]: Game is now running." << std::endl;
 }
@@ -47,8 +48,15 @@ void Game::HandleEvents()
 		switch(event.type)
 		{
 			case SDL_QUIT:
-				this->running=false;
+				this->setRunning(false);
 				break;
+
+			case SDL_KEYDOWN:
+				if(event.key.keysym.sym == SDLK_q)
+				{
+					this->setRunning(false);
+					break;
+				}
 		}
 	}
 }
@@ -60,9 +68,12 @@ void Game::Render()
 }
 void Game::Update()
 {
+	this->currentMap->update();
+
 }
 void Game::Cleanup()
 {
+	//Destroy Game Objects and components
 	std::vector<GameObject*>::iterator Objects_itr;
 	for(Objects_itr = this->Objects.begin();
 			Objects_itr != this->Objects.end();
@@ -71,6 +82,9 @@ void Game::Cleanup()
 		delete (*Objects_itr);
 		(*Objects_itr) = nullptr;
 	}
+	delete this->currentMap;
+	this->currentMap = nullptr;
+	//Destroy SDL Objects and components
 	SDL_DestroyWindow(this->mainWindow);
 	SDL_DestroyRenderer(this->mainRenderer);
 	SDL_Quit();

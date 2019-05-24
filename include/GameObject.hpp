@@ -1,6 +1,9 @@
 #ifndef _GAMEOBJECT_HPP_
 #define _GAMEOBJECT_HPP_
 
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <string>
 //Classes that derive from GameObject:
 //
 //Player
