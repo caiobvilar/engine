@@ -3,17 +3,22 @@
 
 #include <cstddef>
 #include <string>
+#include <fstream>
+
+
 class Map
 {
 	private:
 		
-		void LoadMap(std::string map_path, std::string texture_path);
+		Sprite *tileSprite;
+		std::array<SDL_Texture*,12> mapArray;
+
 	public:
-		
-		Map();
+				
+		Map(std::string Maptxt);
 		~Map();
 		void update();
-
+		void loadMap(std::string Maptxt);
 };
 
 

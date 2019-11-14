@@ -1,9 +1,14 @@
 #include "../include/Game.hpp"
-
+/////CONSTRUCTOR/////
 Game::Game()
 {}
+/////DESTRUCTOR//////
 Game::~Game()
 {}
+
+
+
+
 void Game::Init(std::string winName,int win_x,int win_y,int win_width,int win_height)
 {
 	this->windowName = winName;
@@ -36,7 +41,6 @@ void Game::Init(std::string winName,int win_x,int win_y,int win_width,int win_he
 			}
 		}
 	}
-	this->currentMap = new Map();
 	this->running = true;
 	std::cout << "[GAME]: Game is now running." << std::endl;
 }
@@ -68,7 +72,6 @@ void Game::Render()
 }
 void Game::Update()
 {
-	this->currentMap->update();
 
 }
 void Game::Cleanup()
@@ -82,8 +85,6 @@ void Game::Cleanup()
 		delete (*Objects_itr);
 		(*Objects_itr) = nullptr;
 	}
-	delete this->currentMap;
-	this->currentMap = nullptr;
 	//Destroy SDL Objects and components
 	SDL_DestroyWindow(this->mainWindow);
 	SDL_DestroyRenderer(this->mainRenderer);

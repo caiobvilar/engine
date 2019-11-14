@@ -7,7 +7,7 @@ CC = g++
 COMPILER_FLAGS = -w
 
 #LINKER_FLAGS
-LINKER_FLAGS = -lSDL2 -lSDL2_image
+LINKER_FLAGS = -lSDL2 -lSDL2_image -Wl,-rpath=/usr/local/lib
 
 #OBJ_NAME
 OBJ_NAME = 14_animated_sprites_and_vsync
