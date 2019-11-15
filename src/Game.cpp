@@ -1,4 +1,6 @@
 #include "../include/Game.hpp"
+#include "../include/TextureManager.hpp"
+#include "../include/Player.hpp"
 /////CONSTRUCTOR/////
 Game::Game()
 {}
@@ -6,8 +8,10 @@ Game::Game()
 Game::~Game()
 {}
 
+SDL_Texture* playerTx;
+SDL_Rect srcRect,destRect;
 
-
+SDL_Renderer* Game::mainRenderer = nullptr;
 
 void Game::Init(std::string winName,int win_x,int win_y,int win_width,int win_height)
 {
@@ -38,11 +42,17 @@ void Game::Init(std::string winName,int win_x,int win_y,int win_width,int win_he
 			else
 			{
 				std::cout << "[GAME]: Renderer succesfuly created." << std::endl;
+				SDL_SetRenderDrawColor(this->mainRenderer,188,198,214,255);
+				this->running = true;
+				std::cout << "[GAME]: Game is now running." << std::endl;
 			}
 		}
 	}
-	this->running = true;
-	std::cout << "[GAME]: Game is now running." << std::endl;
+	///////////Texture Loading////////
+	//playerTx = TextureManager::LoadTexture("../art/player.png",this->mainRenderer);
+	GameObject* obj = new Player("../art/player.png",this->mainRenderer);
+	this->Objects.push_back(obj);
+
 }
 void Game::HandleEvents()
 {
@@ -52,13 +62,13 @@ void Game::HandleEvents()
 		switch(event.type)
 		{
 			case SDL_QUIT:
-				this->setRunning(false);
+				this->running=false;
 				break;
 
 			case SDL_KEYDOWN:
 				if(event.key.keysym.sym == SDLK_q)
 				{
-					this->setRunning(false);
+					this->running=false;
 					break;
 				}
 		}
@@ -68,11 +78,26 @@ void Game::Render()
 {
 	SDL_RenderClear(this->mainRenderer);
 	//Do rendering stuff
+	//SDL_RenderCopy(this->mainRenderer,playerTx,NULL,&destRect);
+	std::vector<GameObject*>::iterator Objects_itr;
+	for(Objects_itr = this->Objects.begin();
+			Objects_itr != this->Objects.end();
+			Objects_itr++)
+	{
+		(*Objects_itr)->draw(this->mainRenderer);
+	}
+	//loop through the draw() functions of objects vector
 	SDL_RenderPresent(this->mainRenderer);
 }
 void Game::Update()
 {
-
+	std::vector<GameObject*>::iterator Objects_itr;
+	for(Objects_itr = this->Objects.begin();
+			Objects_itr != this->Objects.end();
+			Objects_itr++)
+	{
+		(*Objects_itr)->update();
+	}
 }
 void Game::Cleanup()
 {
@@ -89,13 +114,9 @@ void Game::Cleanup()
 	SDL_DestroyWindow(this->mainWindow);
 	SDL_DestroyRenderer(this->mainRenderer);
 	SDL_Quit();
-	std::cout << "Game Object cleaned up!" << std::endl;
+	std::cout << "\nGame Object cleaned up!" << std::endl;
 }
 bool Game::isRunning()
 {
 	return this->running;
-}
-void Game::setRunning(bool state)
-{
-	this->running = state;
 }

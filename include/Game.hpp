@@ -26,13 +26,13 @@ class Game
 		void Render();
 		void Cleanup();
 		bool isRunning();
-		void setRunning(bool);
+		static SDL_Renderer* mainRenderer;
 
 	private:
 		std::string windowName;
-		bool running;																//Holds game running state
+		int cnt = 0;
+		bool running;																//Holds game running status
 		SDL_Window* mainWindow = nullptr;
-		SDL_Renderer* mainRenderer = nullptr;
 		std::vector<GameObject*> Objects;
 
 };

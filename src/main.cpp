@@ -5,15 +5,17 @@
 //	Filename: main.cpp
 /////////////////////////////////////////////////////////////////
 #include "../include/Game.hpp"
+#include <iomanip>
 #define	FPS	60
-#define	DELAY_TIME	1000.0f/FPS
+#define	FRAME_DELAY	1000/FPS
 
+Game* GameInstance = nullptr;
 
 int main(int argc, char *argv[])
 {
-	Game* GameInstance = new Game();
+	GameInstance = new Game();
 	uint32_t frameStart,frameTime;
-	GameInstance->Init("Main Window",0,0,800,600);
+	GameInstance->Init("Main Window",0,0,800,640);
 	while(GameInstance->isRunning()) // Main Loop
 	{
 		frameStart = SDL_GetTicks();
@@ -21,11 +23,14 @@ int main(int argc, char *argv[])
 		GameInstance->Update();
 		GameInstance->Render();
 		frameTime = SDL_GetTicks() - frameStart;
-		if(frameTime < DELAY_TIME)
+		if(FRAME_DELAY > frameTime)
 		{
-			SDL_Delay((int) (DELAY_TIME - frameTime));
+			SDL_Delay((int) (FRAME_DELAY - frameTime));
 		}
-		std::cout << "FPS: " << frameTime << std::endl;
+		std::cout << "\r"
+							<< std::setw(3) << std::setfill('0')
+							<< "FPS: " << frameTime
+							<< std::setw(3) << std::flush;
 	}
 	GameInstance->Cleanup();
 	delete GameInstance;
