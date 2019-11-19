@@ -50,8 +50,22 @@ void Game::Init(std::string winName,int win_x,int win_y,int win_width,int win_he
 	}
 	///////////Texture Loading////////
 	//playerTx = TextureManager::LoadTexture("../art/player.png",this->mainRenderer);
-	GameObject* obj = new Player("../art/player.png",this->mainRenderer);
+	GameObject* obj = new Player("../art/player.png",this->mainRenderer,0, 0);
+	GameObject* obj1 = new Player("../art/player.png",this->mainRenderer,0, 68);
+	GameObject* obj2 = new Player("../art/player.png",this->mainRenderer,0, 136);
+	GameObject* obj3 = new Player("../art/player.png",this->mainRenderer,0, 204);
+	GameObject* obj4 = new Player("../art/player.png",this->mainRenderer,0, 272);
+	GameObject* obj5 = new Player("../art/player.png",this->mainRenderer,0, 340);
+	GameObject* obj6 = new Player("../art/player.png",this->mainRenderer,0, 408);
+	GameObject* obj7 = new Player("../art/player.png",this->mainRenderer,0, 476);
 	this->Objects.push_back(obj);
+	this->Objects.push_back(obj1);
+	this->Objects.push_back(obj2);
+	this->Objects.push_back(obj3);
+	this->Objects.push_back(obj4);
+	this->Objects.push_back(obj5);
+	this->Objects.push_back(obj6);
+	this->Objects.push_back(obj7);
 
 }
 void Game::HandleEvents()

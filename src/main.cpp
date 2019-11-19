@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 {
 	GameInstance = new Game();
 	uint32_t frameStart,frameTime;
-	GameInstance->Init("Main Window",0,0,800,640);
+	GameInstance->Init("Main Window",0,0,1024,780);
 	while(GameInstance->isRunning()) // Main Loop
 	{
 		frameStart = SDL_GetTicks();
@@ -27,10 +27,12 @@ int main(int argc, char *argv[])
 		{
 			SDL_Delay((int) (FRAME_DELAY - frameTime));
 		}
+		/*
 		std::cout << "\r"
 							<< std::setw(3) << std::setfill('0')
 							<< "FPS: " << frameTime
 							<< std::setw(3) << std::flush;
+		*/
 	}
 	GameInstance->Cleanup();
 	delete GameInstance;
