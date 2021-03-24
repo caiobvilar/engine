@@ -11,7 +11,7 @@ EntityManager::~EntityManager()
 
 Entity EntityManager::Create()
 {
-	++this->next.id;
+	++this->next->id;
 	while()
 	{
 	}
