@@ -4,7 +4,6 @@
 //	License: GPL 3.0
 //	Filename: main.cpp
 /////////////////////////////////////////////////////////////////
-#include "../include/Game.hpp"
 #include <iomanip>
 #define	FPS	60
 #define	FRAME_DELAY	1000/FPS
