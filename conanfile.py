@@ -9,6 +9,8 @@ class ExampleRecipe(ConanFile):
     def requirements(self):
         self.requires("entt/3.14.0")
         self.requires("sdl/2.30.9")
+        self.requires("spdlog/1.15.1")
+        self.requires("glm/1.0.1")
 
     def layout(self):
         cmake_layout(self)
