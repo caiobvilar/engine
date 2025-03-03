@@ -19,7 +19,7 @@ class ExampleRecipe(ConanFile):
     def generate(self):
         copy(self, "*sdl2*", os.path.join(self.dependencies["imgui"].package_folder,
             "res", "bindings"), os.path.join(self.source_folder, "bindings"))
-        copy(self, "*sdlrenderer*", os.path.join(self.dependencies["imgui"].package_folder,
+        copy(self, "*sdlrenderer2*", os.path.join(self.dependencies["imgui"].package_folder,
             "res", "bindings"), os.path.join(self.source_folder, "bindings"))
 
     def build_requirements(self):

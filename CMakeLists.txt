@@ -3,16 +3,17 @@ project (Engine)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-include_directories(include)
-
+include_directories(${PROJECT_SOURCE_DIR}/include
+                    ${PROJECT_SOURCE_DIR}/bindings
+)
 find_package(EnTT REQUIRED)
 find_package(spdlog REQUIRED)
 find_package(glm REQUIRED)
 find_package(SDL2 REQUIRED)
-
-file(GLOB SOURCES "src/*.cpp")
-
-add_executable(${CMAKE_PROJECT_NAME} ${SOURCES})
+find_package(imgui REQUIRED)
+file(GLOB SOURCES "src/*.cpp", "iclude/*.hpp")
+file(GLOB IMGUI_BINDINGS_FILES ${PROJECT_SOURCE_DIR}/bindings/*.cpp)
+add_executable(${CMAKE_PROJECT_NAME} ${SOURCES} ${IMGUI_BINDINGS_FILES})
 
 
 target_link_libraries(
@@ -22,6 +23,7 @@ target_link_libraries(
                      spdlog::spdlog
                      glm::glm
                      SDL2::SDL2
+                     imgui::imgui
 )
 
 # Set compiler flags to treat all warnings as errors

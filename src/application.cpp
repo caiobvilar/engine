@@ -2,9 +2,11 @@
 //	Author: Caio Jose Borba Vilar Guimaraes
 //	Description: main executable that runs all modules and game
 //	License: GPL 3.0
-//	Filename: main.cpp
+//	Filename: application.cpp
 /////////////////////////////////////////////////////////////////
+#include "imgui.h"
 #include <SDL2/SDL.h>
+#include <imgui_impl_sdl2.h>
 #include <iostream>
 #include <spdlog/spdlog.h>
 
@@ -13,6 +15,16 @@
 
 int main(int argc, char* argv[])
 {
+    if (argc > 1)
+    {
+        spdlog::info("Arguments: ");
+        for (int i = 0; i < argc; i++)
+        {
+            spdlog::info("{}", argv[i]);
+        }
+    }
+    spdlog::set_level(spdlog::level::info);
+    spdlog::info("Starting application");
     uint32_t frameStart, frameTime;
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
@@ -49,7 +61,6 @@ int main(int argc, char* argv[])
     while (!is_done)
     {
         frameStart = SDL_GetTicks();
-        // GameInstance->HandleEvents();
         SDL_Event event;
         while (SDL_PollEvent(&event))
         {
