@@ -11,7 +11,7 @@ find_package(spdlog REQUIRED)
 find_package(glm REQUIRED)
 find_package(SDL2 REQUIRED)
 find_package(imgui REQUIRED)
-file(GLOB SOURCES "src/*.cpp", "iclude/*.hpp")
+file(GLOB SOURCES "src/*.cpp", "include/*.h")
 file(GLOB IMGUI_BINDINGS_FILES ${PROJECT_SOURCE_DIR}/bindings/*.cpp)
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCES} ${IMGUI_BINDINGS_FILES})
 
@@ -32,3 +32,5 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clan
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE /W4 /WX)
 endif()
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
