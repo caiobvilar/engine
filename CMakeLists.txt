@@ -11,7 +11,7 @@ find_package(spdlog REQUIRED)
 find_package(glm REQUIRED)
 find_package(SDL2 REQUIRED)
 find_package(imgui REQUIRED)
-file(GLOB SOURCES "src/*.cpp", "include/*.h")
+file(GLOB SOURCES "src/*.cpp", "include/*.hpp")
 file(GLOB IMGUI_BINDINGS_FILES ${PROJECT_SOURCE_DIR}/bindings/*.cpp)
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCES} ${IMGUI_BINDINGS_FILES})
 
