@@ -12,24 +12,12 @@ class ConfigurationManager
     nlohmann::json getConfig() const;
     int loadConfig(const std::string& filePath);
 
-    // Database configuration getters and setters
-    std::string getDatabaseHost() const;
-    void setDatabaseHost(const std::string& host);
-
-    std::string getDatabaseUser() const;
-    void setDatabaseUser(const std::string& user);
-
-    std::string getDatabasePassword() const;
-    void setDatabasePassword(const std::string& password);
-
-    int getDatabasePort() const;
-    void setDatabasePort(int port);
-
-    std::string getDatabaseName() const;
-    void setDatabaseName(const std::string& name);
-
-    std::string getDatabaseSocket() const;
-    void setDatabaseSocket(const std::string& socket);
+    int GetDefaultFPS();
+    int GetWindowWidth();
+    int GetWindowHeight();
+    std::string GetWindowName();
+    char GetDefaultExitChar();
+    void printConfig() const;
 
   private:
     ConfigurationManager() = default;

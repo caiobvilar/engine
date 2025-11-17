@@ -3,11 +3,14 @@
 # Include directories for Engine
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include
                     ${CMAKE_SOURCE_DIR}/bindings
+                    ${CMAKE_SOURCE_DIR}/ConfigurationManager/include
                     /usr/local/include/imgui
 )
 find_package(EnTT REQUIRED)
 find_package(spdlog REQUIRED)
 find_package(glm REQUIRED)
+
+# Find SDL3 - we'll manually link the static version
 find_package(SDL3 REQUIRED)
 
 # ImGui doesn't have a CMake package, we'll handle it manually
@@ -27,12 +30,18 @@ file(GLOB IMGUI_SOURCES
 # Create engine static library
 add_library(EngineLib STATIC ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${IMGUI_SOURCES})
 
+# Link static SDL3 library directly
 target_link_libraries(EngineLib
                     PUBLIC
+                     ConfigurationManager
                      EnTT::EnTT
                      spdlog::spdlog
                      glm::glm
-                     SDL3::SDL3
+                     /usr/local/lib/libSDL3.a
+                     # SDL3 dependencies
+                     m
+                     pthread
+                     dl
 )
 
 # Make include directory available to other targets

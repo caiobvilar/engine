@@ -1,17 +1,20 @@
-cmake_minimum_required(VERSION 3.10)
-# Add the library
-add_library(
-    ConfigurationManager
+# ConfigurationManager Library CMakeLists.txt
+
+# Add the library as STATIC
+add_library(ConfigurationManager STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/src/ConfigurationManager.cpp 
-    )
+)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+# Export include directory
+target_include_directories(ConfigurationManager PUBLIC 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
 
 
-# Link libraries
+# Find and link libraries
 find_package(nlohmann_json REQUIRED)
 find_package(spdlog REQUIRED)
-target_link_libraries(ConfigurationManager PRIVATE nlohmann_json::nlohmann_json spdlog::spdlog)
+target_link_libraries(ConfigurationManager PUBLIC nlohmann_json::nlohmann_json spdlog::spdlog)
 
 # Set compiler flags to treat all warnings as errors
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")

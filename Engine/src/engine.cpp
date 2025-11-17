@@ -14,6 +14,19 @@ Engine::Engine()
         static_cast<decltype(this->currentTime)>(SDL_GetTicks());
     this->lastTime = this->currentTime;
     this->timeStep = 0.0f;
+
+    // Load configuration file
+    if (this->configManager.loadConfig("/workspace/config/config.json") != 0)
+    {
+        spdlog::error(
+            "Failed to load /workspace/config/config.json, using defaults");
+    }
+
+    // Read and store exit key from configuration
+    char exitChar = this->configManager.GetDefaultExitChar();
+    this->exitKey = SDL_GetKeyFromName(&exitChar);
+    spdlog::info("Exit key configured as: '{}'", exitChar);
+
     if (this->CreateWindow() != 0)
     {
         spdlog::error("Failed to create window");
@@ -74,8 +87,10 @@ int Engine::CreateWindow()
         spdlog::error("Error initializing SDL: {}", SDL_GetError());
         return -1;
     }
-    SDL_Window* window = SDL_CreateWindow(
-        "Main Window", WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_RESIZABLE);
+    SDL_Window* window = SDL_CreateWindow("Main Window",
+                                          configManager.GetWindowWidth(),
+                                          configManager.GetWindowHeight(),
+                                          SDL_WINDOW_RESIZABLE);
     if (window == NULL)
     {
         spdlog::error("Error creating window: {}", SDL_GetError());
@@ -139,11 +154,11 @@ void Engine::ProcessEvents()
             this->is_done = true;
             break;
         case SDL_EVENT_KEY_DOWN:
-            switch (this->event.key.key)
+            // Check if the pressed key matches the configured exit key
+            if (this->event.key.key == this->exitKey)
             {
-            case SDLK_Q:
+                spdlog::info("Exit key pressed");
                 this->is_done = true;
-                break;
             }
             break;
         case SDL_EVENT_WINDOW_CLOSE_REQUESTED:

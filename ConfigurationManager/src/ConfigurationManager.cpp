@@ -1,4 +1,3 @@
-#include "../include/ConfigurationManager.hpp"
 #include "ConfigurationManager.hpp"
 #include <fstream>
 #include <iostream>
@@ -50,68 +49,79 @@ int ConfigurationManager::loadConfig(const std::string& filePath)
     }
     return 0;
 }
-
-// Database configuration getters and setters
-std::string ConfigurationManager::getDatabaseHost() const
+void ConfigurationManager::printConfig() const
 {
-    if (this->configData["database"]["host"].is_null())
+    spdlog::info("Current Configuration:");
+    spdlog::info("{}", this->configData.dump(4));
+}
+
+int ConfigurationManager::GetDefaultFPS()
+{
+    if (configData.contains("default_fps") &&
+        configData["default_fps"].is_number_integer())
     {
-        return "";
+        return configData["default_fps"].get<int>();
+    } else
+    {
+        spdlog::warn(
+            "default_fps not found in configuration. Using default value 60.");
+        return 60; // Default FPS
     }
-    return this->configData["database"]["host"];
 }
 
-void ConfigurationManager::setDatabaseHost(const std::string& host)
+int ConfigurationManager::GetWindowWidth()
 {
-    this->configData["database"]["host"] = host;
+    if (configData.contains("window_width") &&
+        configData["window_width"].is_number_integer())
+    {
+        return configData["window_width"].get<int>();
+    } else
+    {
+        spdlog::warn("window_width not found in configuration. Using default "
+                     "value 1280.");
+        return 1280; // Default width
+    }
 }
 
-std::string ConfigurationManager::getDatabaseUser() const
+int ConfigurationManager::GetWindowHeight()
 {
-    return this->configData["database"]["user"];
+    if (configData.contains("window_height") &&
+        configData["window_height"].is_number_integer())
+    {
+        return configData["window_height"].get<int>();
+    } else
+    {
+        spdlog::warn("window_height not found in configuration. Using default "
+                     "value 720.");
+        return 720; // Default height
+    }
 }
 
-void ConfigurationManager::setDatabaseUser(const std::string& user)
+std::string ConfigurationManager::GetWindowName()
 {
-    this->configData["database"]["user"] = user;
+    if (configData.contains("window_name") &&
+        configData["window_name"].is_string())
+    {
+        return configData["window_name"].get<std::string>();
+    } else
+    {
+        spdlog::warn("window_name not found in configuration. Using default "
+                     "value 'Main Window'.");
+        return "Main Window"; // Default window name
+    }
 }
 
-std::string ConfigurationManager::getDatabasePassword() const
+char ConfigurationManager::GetDefaultExitChar()
 {
-    return this->configData["database"]["password"];
-}
-
-void ConfigurationManager::setDatabasePassword(const std::string& password)
-{
-    this->configData["database"]["password"] = password;
-}
-
-int ConfigurationManager::getDatabasePort() const
-{
-    return this->configData["database"]["port"].get<int>();
-}
-
-void ConfigurationManager::setDatabasePort(int port)
-{
-    this->configData["database"]["port"] = port;
-}
-
-std::string ConfigurationManager::getDatabaseName() const
-{
-    return this->configData["database"]["database_name"];
-}
-
-void ConfigurationManager::setDatabaseName(const std::string& name)
-{
-    this->configData["database"]["database_name"] = name;
-}
-
-std::string ConfigurationManager::getDatabaseSocket() const
-{
-    return this->configData["database"]["socket"];
-}
-
-void ConfigurationManager::setDatabaseSocket(const std::string& socket)
-{
-    this->configData["database"]["socket"] = socket;
+    if (configData.contains("default_exit_char") &&
+        configData["default_exit_char"].is_string() &&
+        configData["default_exit_char"].get<std::string>().length() == 1)
+    {
+        return configData["default_exit_char"].get<std::string>()[0];
+    } else
+    {
+        spdlog::warn("default_exit_char not found in configuration. Using "
+                     "default value 'Q'.");
+        return 'Q'; // Default exit character
+    }
 }
