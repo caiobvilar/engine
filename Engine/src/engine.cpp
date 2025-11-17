@@ -1,0 +1,208 @@
+/////////////////////////////////////////////////////////////////
+//	Author: Caio Jose Borba Vilar Guimaraes
+//	Description: main executable that runs all modules and game
+//	License: GPL 3.0
+//	Filename: engine.cpp
+/////////////////////////////////////////////////////////////////
+
+#include "engine.hpp"
+
+Engine::Engine()
+{
+    this->is_done = false;
+    this->currentTime =
+        static_cast<decltype(this->currentTime)>(SDL_GetTicks());
+    this->lastTime = this->currentTime;
+    this->timeStep = 0.0f;
+    if (this->CreateWindow() != 0)
+    {
+        spdlog::error("Failed to create window");
+        this->is_done = true;
+        return;
+    }
+    if (this->CreateRenderer() != 0)
+    {
+        spdlog::error("Failed to create renderer");
+        this->is_done = true;
+        return;
+    }
+    // Initialize Dear ImGui
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+
+    // Setup Dear ImGui style
+    ImGui::StyleColorsDark();
+
+    // Setup Platform/Renderer backends
+    ImGui_ImplSDL3_InitForSDLRenderer(window, renderer);
+    ImGui_ImplSDLRenderer3_Init(renderer);
+}
+
+Engine::~Engine() { this->Cleanup(); }
+
+void Engine::Run()
+{
+    while (!this->is_done)
+    {
+        uint64_t frameStart = static_cast<decltype(frameStart)>(SDL_GetTicks());
+
+        this->currentTime = frameStart;
+        this->timeStep =
+            (this->currentTime - this->lastTime) / 1000.0f; // in seconds
+        this->lastTime = this->currentTime;
+
+        this->ProcessEvents();
+        this->Update();
+        this->Draw();
+        // Cap the frame rate
+        uint64_t frameEnd = static_cast<decltype(frameEnd)>(SDL_GetTicks());
+        uint64_t frameTime = frameEnd - frameStart;
+
+        if (frameTime < static_cast<uint64_t>(FRAME_DELAY))
+        {
+            SDL_Delay(static_cast<uint32_t>(FRAME_DELAY - frameTime));
+        }
+    }
+}
+
+int Engine::CreateWindow()
+{
+    if (!SDL_Init(SDL_INIT_VIDEO))
+    {
+        spdlog::error("Error initializing SDL: {}", SDL_GetError());
+        return -1;
+    }
+    SDL_Window* window = SDL_CreateWindow(
+        "Main Window", WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_RESIZABLE);
+    if (window == NULL)
+    {
+        spdlog::error("Error creating window: {}", SDL_GetError());
+        SDL_Quit();
+        return -1;
+    } else
+    {
+        spdlog::info("Window created successfully");
+        this->window = window;
+    }
+    return 0;
+}
+
+int Engine::CreateRenderer()
+{
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, NULL);
+    if (renderer == NULL)
+    {
+        spdlog::error("Error creating renderer: {}", SDL_GetError());
+        SDL_DestroyWindow(window);
+        SDL_Quit();
+        return -1;
+    } else
+    {
+        spdlog::info("Renderer created successfully");
+        this->renderer = renderer;
+        return 0;
+    }
+}
+
+void Engine::Cleanup()
+{
+    // Cleanup ImGui
+    ImGui_ImplSDLRenderer3_Shutdown();
+    ImGui_ImplSDL3_Shutdown();
+    ImGui::DestroyContext();
+
+    if (this->renderer != nullptr)
+    {
+        SDL_DestroyRenderer(this->renderer);
+        this->renderer = nullptr;
+    }
+    if (this->window != nullptr)
+    {
+        SDL_DestroyWindow(this->window);
+        this->window = nullptr;
+    }
+    SDL_Quit();
+}
+
+void Engine::ProcessEvents()
+{
+    while (SDL_PollEvent(&this->event))
+    {
+        // Let ImGui handle the event first
+        ImGui_ImplSDL3_ProcessEvent(&this->event);
+
+        switch (this->event.type)
+        {
+        case SDL_EVENT_QUIT:
+            this->is_done = true;
+            break;
+        case SDL_EVENT_KEY_DOWN:
+            switch (this->event.key.key)
+            {
+            case SDLK_Q:
+                this->is_done = true;
+                break;
+            }
+            break;
+        case SDL_EVENT_WINDOW_CLOSE_REQUESTED:
+            spdlog::debug("Window close requested");
+            this->is_done = true;
+            break;
+        default:
+            break;
+        }
+    }
+}
+int Engine::Draw()
+{
+    if (this->renderer == nullptr)
+    {
+        spdlog::error("Renderer is null in Draw function");
+        return -1;
+    }
+    SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 255);
+    SDL_RenderClear(this->renderer);
+    // Note: SDL_RenderPresent is now called in Application.cpp after ImGui
+    // rendering
+
+    // Start ImGui frame
+    ImGui_ImplSDLRenderer3_NewFrame();
+    ImGui_ImplSDL3_NewFrame();
+    ImGui::NewFrame();
+
+    // Create FPS HUD
+    ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_FirstUseEver);
+    ImGui::SetNextWindowSize(ImVec2(200, 80), ImGuiCond_FirstUseEver);
+    ImGui::Begin("Performance",
+                 nullptr,
+                 ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+    float currentFPS = this->GetFPS();
+    ImGui::Text("FPS: %.1f", currentFPS);
+    ImGui::Text("Frame Time: %.3f ms", this->timeStep * 1000.0f);
+    ImGui::End();
+
+    this->Update();
+
+    // Render ImGui
+    ImGui::Render();
+    ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), this->renderer);
+
+    SDL_RenderPresent(this->renderer);
+    return 0;
+}
+
+void Engine::Update()
+{
+    spdlog::debug("Updating game logic with time step: {:.6f} seconds",
+                  this->timeStep);
+}
+float Engine::GetFPS()
+{
+    if (this->timeStep > 0.0f)
+    {
+        return 1.0f / this->timeStep;
+    }
+    return 0.0f;
+}

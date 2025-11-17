@@ -1,0 +1,50 @@
+# Engine Library CMakeLists.txt
+
+# Include directories for Engine
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include
+                    ${CMAKE_SOURCE_DIR}/bindings
+                    /usr/local/include/imgui
+)
+find_package(EnTT REQUIRED)
+find_package(spdlog REQUIRED)
+find_package(glm REQUIRED)
+find_package(SDL3 REQUIRED)
+
+# ImGui doesn't have a CMake package, we'll handle it manually
+# Engine library sources
+file(GLOB ENGINE_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+file(GLOB ENGINE_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp")
+# ImGui source files (using SDL3 backends from /usr/local/include/imgui/)
+file(GLOB IMGUI_SOURCES 
+    "/usr/local/include/imgui/imgui.cpp"
+    "/usr/local/include/imgui/imgui_draw.cpp"
+    "/usr/local/include/imgui/imgui_tables.cpp"
+    "/usr/local/include/imgui/imgui_widgets.cpp"
+    "/usr/local/include/imgui/imgui_impl_sdl3.cpp"
+    "/usr/local/include/imgui/imgui_impl_sdlrenderer3.cpp"
+)
+
+# Create engine static library
+add_library(EngineLib STATIC ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${IMGUI_SOURCES})
+
+target_link_libraries(EngineLib
+                    PUBLIC
+                     EnTT::EnTT
+                     spdlog::spdlog
+                     glm::glm
+                     SDL3::SDL3
+)
+
+# Make include directory available to other targets
+target_include_directories(EngineLib PUBLIC 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/bindings
+    /usr/local/include/imgui
+)
+
+# Set compiler flags for EngineLib
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    target_compile_options(EngineLib PRIVATE -Wall -Wextra -Werror)
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    target_compile_options(EngineLib PRIVATE /W4 /WX)
+endif()

@@ -1,0 +1,64 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 25,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "debug",
+            "displayName": "Debug Configuration",
+            "description": "Debug build with full debugging symbols and sanitizers",
+            "binaryDir": "${sourceDir}/build/Debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_CXX_FLAGS_DEBUG": "-g3 -O0 -Wall -Wextra -Wpedantic -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer"
+            }
+        },
+        {
+            "name": "release",
+            "displayName": "Release Configuration",
+            "description": "Optimized release build with LTO",
+            "binaryDir": "${sourceDir}/build/Release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG -march=native -flto",
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": "ON"
+            }
+        },
+        {
+            "name": "relwithdebinfo",
+            "displayName": "Release with Debug Info",
+            "description": "Optimized build with debugging symbols for profiling",
+            "binaryDir": "${sourceDir}/build/RelWithDebInfo",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "-O2 -g -DNDEBUG"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "debug",
+            "displayName": "Build Debug",
+            "configurePreset": "debug",
+            "jobs": 0
+        },
+        {
+            "name": "release",
+            "displayName": "Build Release",
+            "configurePreset": "release",
+            "jobs": 0
+        },
+        {
+            "name": "relwithdebinfo",
+            "displayName": "Build RelWithDebInfo",
+            "configurePreset": "relwithdebinfo",
+            "jobs": 0
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+services:
+  engine-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: engine-dev:gcc14
+    container_name: engine-dev
+    # Run as host user to avoid permission issues
+    user: "${UID:-1000}:${GID:-1000}"
+    environment:
+      - DISPLAY=${DISPLAY}
+      - WAYLAND_DISPLAY=${WAYLAND_DISPLAY}
+      - XDG_RUNTIME_DIR=/tmp
+    volumes:
+      # Mount the entire project directory (with :z for SELinux on Fedora)
+      - .:/workspace:z
+      # Mount X11 socket for display (fallback if Wayland fails)
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      # Mount Wayland socket
+      - ${XDG_RUNTIME_DIR}/${WAYLAND_DISPLAY}:/tmp/${WAYLAND_DISPLAY}:z
+    working_dir: /workspace
+    # Keep container running for interactive use
+    stdin_open: true
+    tty: true
+    # Override command to keep container alive
+    command: tail -f /dev/null
+    security_opt:
+      - label=type:container_runtime_t
+    # OR use this to disable SELinux for just this container:
+    # security_opt:
+    #   - label=disable
