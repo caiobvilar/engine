@@ -1,0 +1,33 @@
+# Build directories
+build/
+cmake-build-*/
+
+# Conan directories (will be recreated in container)
+.conan2/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+.gitignore
+
+# Compiled files
+*.o
+*.a
+*.so
+*.exe
+*.out
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+compile_commands.json
+
+# Other
+*.log
+imgui.ini
