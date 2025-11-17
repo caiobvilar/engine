@@ -18,6 +18,8 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix:ro
       # Mount Wayland socket
       - ${XDG_RUNTIME_DIR}/${WAYLAND_DISPLAY}:/tmp/${WAYLAND_DISPLAY}:z
+      # Mount SSH keys for Git authentication (read-only)
+      - ${HOME}/.ssh:/home/ubuntu/.ssh:ro
     working_dir: /workspace
     # Keep container running for interactive use
     stdin_open: true
