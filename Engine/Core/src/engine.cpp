@@ -16,11 +16,20 @@ Engine::Engine()
     this->timeStep = 0.0f;
 
     // Load configuration file
-    if (this->configManager.loadConfig("/workspace/config/config.json") != 0)
+    if (this->configManager.loadConfig(
+            "/workspace/Application/config/config.json") != 0)
     {
         spdlog::error(
-            "Failed to load /workspace/config/config.json, using defaults");
+            "Failed to load /workspace/Application/config/config.json, using "
+            "defaults");
     }
+
+    // Calculate target frame delay from configured FPS
+    this->fps = this->configManager.GetDefaultFPS();
+    this->targetFrameDelay = 1000.0f / this->fps;
+    spdlog::info("Target FPS: {}, Frame delay: {:.2f}ms",
+                 this->fps,
+                 this->targetFrameDelay);
 
     // Read and store exit key from configuration
     char exitChar = this->configManager.GetDefaultExitChar();
@@ -69,13 +78,14 @@ void Engine::Run()
         this->ProcessEvents();
         this->Update();
         this->Draw();
-        // Cap the frame rate
+        // Cap the frame rate based on configured FPS
         uint64_t frameEnd = static_cast<decltype(frameEnd)>(SDL_GetTicks());
         uint64_t frameTime = frameEnd - frameStart;
 
-        if (frameTime < static_cast<uint64_t>(FRAME_DELAY))
+        if (frameTime < static_cast<uint64_t>(this->targetFrameDelay))
         {
-            SDL_Delay(static_cast<uint32_t>(FRAME_DELAY - frameTime));
+            SDL_Delay(
+                static_cast<uint32_t>(this->targetFrameDelay - frameTime));
         }
     }
 }

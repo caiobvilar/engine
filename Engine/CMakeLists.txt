@@ -1,7 +1,8 @@
 # Engine Library CMakeLists.txt
 
 # Include directories for Engine
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Core/include
+                    ${CMAKE_CURRENT_SOURCE_DIR}/Map/include
                     ${CMAKE_SOURCE_DIR}/bindings
                     ${CMAKE_SOURCE_DIR}/ConfigurationManager/include
                     /usr/local/include/imgui
@@ -15,8 +16,11 @@ find_package(SDL3 REQUIRED)
 
 # ImGui doesn't have a CMake package, we'll handle it manually
 # Engine library sources
-file(GLOB ENGINE_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
-file(GLOB ENGINE_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp")
+file(GLOB ENGINE_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/Core/src/*.cpp")
+file(GLOB ENGINE_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/Core/include/*.hpp")
+# Map module sources
+file(GLOB MAP_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/Map/src/*.cpp")
+file(GLOB MAP_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/Map/include/*.hpp")
 # ImGui source files (using SDL3 backends from /usr/local/include/imgui/)
 file(GLOB IMGUI_SOURCES 
     "/usr/local/include/imgui/imgui.cpp"
@@ -28,7 +32,7 @@ file(GLOB IMGUI_SOURCES
 )
 
 # Create engine static library
-add_library(EngineLib STATIC ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${IMGUI_SOURCES})
+add_library(EngineLib STATIC ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${MAP_SOURCES} ${MAP_HEADERS} ${IMGUI_SOURCES})
 
 # Link static SDL3 library directly
 target_link_libraries(EngineLib
@@ -46,7 +50,8 @@ target_link_libraries(EngineLib
 
 # Make include directory available to other targets
 target_include_directories(EngineLib PUBLIC 
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/Map/include
     ${CMAKE_SOURCE_DIR}/bindings
     /usr/local/include/imgui
 )

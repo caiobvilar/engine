@@ -2,6 +2,7 @@
 #define ENGINE_HPP
 
 #include "ConfigurationManager.hpp"
+#include "Map.hpp"
 #include "imgui.h"
 #include <SDL3/SDL.h>
 #include <cassert>
@@ -14,11 +15,6 @@
 #include <string>
 #include <vector>
 
-#define FPS 60.0f
-#define FRAME_DELAY (1000.0f / FPS) // Frame delay in milliseconds
-#define WINDOW_WIDTH 1280
-#define WINDOW_HEIGHT 720
-
 class Engine
 {
   public:
@@ -26,6 +22,9 @@ class Engine
     ~Engine();
     void Run();
     float GetFPS();
+    SDL_Renderer* GetRenderer() const { return renderer; }
+    SDL_Window* GetWindow() const { return window; }
+    Map& GetMap() { return map; }
 
   private:
     SDL_Window* window;
@@ -38,7 +37,9 @@ class Engine
     float timeStep;
     SDL_Event event;
     float fps;
+    float targetFrameDelay; // Calculated from configured FPS
     SDL_Keycode exitKey;
+    Map map;
 
     int CreateWindow();
     int CreateRenderer();
