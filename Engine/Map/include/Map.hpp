@@ -3,7 +3,9 @@
 
 #include <ConfigurationManager.hpp>
 #include <SDL3/SDL.h>
+#include <TileAtlasManager.hpp>
 #include <map>
+#include <spdlog/spdlog.h>
 #include <string>
 #include <vector>
 
@@ -18,8 +20,9 @@ class Map
     void Draw(SDL_Renderer* renderer);
 
   private:
-    std::map<std::string, SDL_Texture*> textures;
-    std::vector<SDL_Rect> mapTiles;
+    ConfigurationManager& configManager = nullptr;
+    TileAtlasManager& tileAtlasManager = nullptr;
+    std::map<std::string, std::string> textures;
     int mapWidth;
     int mapHeight;
 };

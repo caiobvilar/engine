@@ -21,6 +21,5 @@ set(CMAKE_LINK_SEARCH_END_STATIC ON)
 # Add subdirectories
 add_subdirectory(Engine)
 add_subdirectory(Application)
-add_subdirectory(ConfigurationManager)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

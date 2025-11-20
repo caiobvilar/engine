@@ -1,6 +1,6 @@
 # Ignore node_modules directory
 node_modules/
-
+Application/Assets/*
 # Ignore build output directories
 dist/
 build/

@@ -1,10 +1,17 @@
 # Engine Library CMakeLists.txt
 
+# Add ConfigurationManager subdirectory first
+add_subdirectory(ConfigurationManager)
+add_subdirectory(IsoCamera)
+add_subdirectory(TextureManager)
+
 # Include directories for Engine
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Core/include
                     ${CMAKE_CURRENT_SOURCE_DIR}/Map/include
-                    ${CMAKE_SOURCE_DIR}/bindings
-                    ${CMAKE_SOURCE_DIR}/ConfigurationManager/include
+                    ${CMAKE_CURRENT_SOURCE_DIR}/IsoCamera/include
+                    ${CMAKE_CURRENT_SOURCE_DIR}/TextureManager/include
+                    ${CMAKE_CURRENT_SOURCE_DIR}/ConfigurationManager/include
+                    ${CMAKE_CURRENT_SOURCE_DIR}/bindings
                     /usr/local/include/imgui
 )
 find_package(EnTT REQUIRED)
@@ -38,6 +45,8 @@ add_library(EngineLib STATIC ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${MAP_SOURCES} 
 target_link_libraries(EngineLib
                     PUBLIC
                      ConfigurationManager
+                     IsoCamera
+                     TextureManager
                      EnTT::EnTT
                      spdlog::spdlog
                      glm::glm
@@ -52,7 +61,10 @@ target_link_libraries(EngineLib
 target_include_directories(EngineLib PUBLIC 
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/include
     ${CMAKE_CURRENT_SOURCE_DIR}/Map/include
-    ${CMAKE_SOURCE_DIR}/bindings
+    ${CMAKE_CURRENT_SOURCE_DIR}/IsoCamera/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/TextureManager/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/ConfigurationManager/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/bindings
     /usr/local/include/imgui
 )
 

@@ -60,6 +60,7 @@ Engine::Engine()
     // Setup Platform/Renderer backends
     ImGui_ImplSDL3_InitForSDLRenderer(window, renderer);
     ImGui_ImplSDLRenderer3_Init(renderer);
+    this->map.LoadMap("/workspace/config/map.json");
 }
 
 Engine::~Engine() { this->Cleanup(); }
