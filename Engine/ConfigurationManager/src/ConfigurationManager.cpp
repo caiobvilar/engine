@@ -3,6 +3,8 @@
 #include <iostream>
 #include <spdlog/spdlog.h>
 
+ConfigurationManager* ConfigurationManager::instance = nullptr;
+
 ConfigurationManager::ConfigurationManager(const std::string& filePath)
 {
     spdlog::info("Creating ConfigurationManager instance...");
@@ -19,11 +21,13 @@ ConfigurationManager::ConfigurationManager(const std::string& filePath)
  * @param filePath The path to the configuration file.
  * @return A reference to the singleton instance of ConfigurationManager.
  */
-ConfigurationManager&
-ConfigurationManager::getInstance(const std::string& filePath)
+ConfigurationManager& ConfigurationManager::getInstance()
 {
-    static ConfigurationManager instance(filePath);
-    return instance;
+    if (instance == nullptr)
+    {
+        instance = new ConfigurationManager();
+    }
+    return *instance;
 }
 
 nlohmann::json ConfigurationManager::getConfig() const { return configData; }

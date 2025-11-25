@@ -8,17 +8,21 @@
 class TextureManager
 {
   public:
-    static TextureManager& getInstance();
-    SDL_Texture* LoadTexture(const std::string& filePath,
-                             SDL_Renderer* renderer);
-    void UnloadTexture(const std::string& filePath);
-    void Clear();
+    static TextureManager&
+    getInstance();
+    SDL_Texture*
+    LoadTexture(const std::string& filePath, SDL_Renderer* renderer);
+    void
+    UnloadTexture(const std::string& filePath);
+    void
+    Clear();
 
   private:
-    TextureManager() {}
-    ~TextureManager() { Clear(); }
+    TextureManager();
+    ~TextureManager();
     TextureManager(const TextureManager&) = delete;
-    TextureManager& operator=(const TextureManager&) = delete;
+    TextureManager&
+    operator=(const TextureManager&) = delete;
 
     static TextureManager* instance;
     std::unordered_map<std::string, SDL_Texture*> textureCache;

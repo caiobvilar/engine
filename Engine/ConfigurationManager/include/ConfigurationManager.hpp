@@ -7,11 +7,11 @@
 class ConfigurationManager
 {
   public:
-    static ConfigurationManager& getInstance(const std::string& filePath = "");
+    static ConfigurationManager& getInstance();
 
     nlohmann::json getConfig() const;
     int loadConfig(const std::string& filePath);
-
+    static ConfigurationManager* instance;
     int GetDefaultFPS();
     int GetWindowWidth();
     int GetWindowHeight();

@@ -2,13 +2,17 @@
 
 # Add ConfigurationManager subdirectory first
 add_subdirectory(ConfigurationManager)
+add_subdirectory(InputManager)
 add_subdirectory(IsoCamera)
+add_subdirectory(Math)
 add_subdirectory(TextureManager)
 
 # Include directories for Engine
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Core/include
                     ${CMAKE_CURRENT_SOURCE_DIR}/Map/include
+                    ${CMAKE_CURRENT_SOURCE_DIR}/InputManager/include
                     ${CMAKE_CURRENT_SOURCE_DIR}/IsoCamera/include
+                    ${CMAKE_CURRENT_SOURCE_DIR}/Math/include
                     ${CMAKE_CURRENT_SOURCE_DIR}/TextureManager/include
                     ${CMAKE_CURRENT_SOURCE_DIR}/ConfigurationManager/include
                     ${CMAKE_CURRENT_SOURCE_DIR}/bindings
@@ -45,7 +49,9 @@ add_library(EngineLib STATIC ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${MAP_SOURCES} 
 target_link_libraries(EngineLib
                     PUBLIC
                      ConfigurationManager
+                     InputManager
                      IsoCamera
+                     Math
                      TextureManager
                      EnTT::EnTT
                      spdlog::spdlog
@@ -61,7 +67,9 @@ target_link_libraries(EngineLib
 target_include_directories(EngineLib PUBLIC 
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/include
     ${CMAKE_CURRENT_SOURCE_DIR}/Map/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/InputManager/include
     ${CMAKE_CURRENT_SOURCE_DIR}/IsoCamera/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/Math/include
     ${CMAKE_CURRENT_SOURCE_DIR}/TextureManager/include
     ${CMAKE_CURRENT_SOURCE_DIR}/ConfigurationManager/include
     ${CMAKE_CURRENT_SOURCE_DIR}/bindings

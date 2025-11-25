@@ -2,7 +2,17 @@
 
 TextureManager* TextureManager::instance = nullptr;
 
-TextureManager& TextureManager::getInstance()
+TextureManager::TextureManager()
+{
+}
+
+TextureManager::~TextureManager()
+{
+    Clear();
+}
+
+TextureManager&
+TextureManager::getInstance()
 {
     if (instance == nullptr)
     {
@@ -10,8 +20,9 @@ TextureManager& TextureManager::getInstance()
     }
     return *instance;
 }
-SDL_Texture* TextureManager::LoadTexture(const std::string& filePath,
-                                         SDL_Renderer* renderer)
+
+SDL_Texture*
+TextureManager::LoadTexture(const std::string& filePath, SDL_Renderer* renderer)
 {
     auto it = textureCache.find(filePath);
     if (it != textureCache.end())
@@ -23,8 +34,7 @@ SDL_Texture* TextureManager::LoadTexture(const std::string& filePath,
     SDL_Surface* surface = SDL_LoadBMP(filePath.c_str());
     if (surface == nullptr)
     {
-        spdlog::error(
-            "Failed to load BMP file '{}': {}", filePath, SDL_GetError());
+        spdlog::error("Failed to load BMP file '{}': {}", filePath, SDL_GetError());
         return nullptr;
     }
 
@@ -33,9 +43,7 @@ SDL_Texture* TextureManager::LoadTexture(const std::string& filePath,
 
     if (texture == nullptr)
     {
-        spdlog::error("Failed to create texture from file '{}': {}",
-                      filePath,
-                      SDL_GetError());
+        spdlog::error("Failed to create texture from file '{}': {}", filePath, SDL_GetError());
         return nullptr;
     }
 
@@ -43,7 +51,9 @@ SDL_Texture* TextureManager::LoadTexture(const std::string& filePath,
     spdlog::info("Texture '{}' loaded successfully", filePath);
     return texture;
 }
-void TextureManager::UnloadTexture(const std::string& filePath)
+
+void
+TextureManager::UnloadTexture(const std::string& filePath)
 {
     auto it = textureCache.find(filePath);
     if (it != textureCache.end())
@@ -53,7 +63,9 @@ void TextureManager::UnloadTexture(const std::string& filePath)
         spdlog::info("Texture '{}' unloaded", filePath);
     }
 }
-void TextureManager::Clear()
+
+void
+TextureManager::Clear()
 {
     for (auto& pair : textureCache)
     {
